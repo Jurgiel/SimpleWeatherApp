@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
                 search(p0?.latLng, 0)
-
+                closeDrawer()
             }
 
             override fun onError(p0: Status?) {
