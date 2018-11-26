@@ -2,6 +2,7 @@ package com.jurgielewicz.simpleweatherapp
 
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.google.android.gms.common.api.Status
@@ -9,7 +10,6 @@ import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
 import com.google.android.gms.location.places.ui.PlaceSelectionListener
 import com.google.android.gms.maps.model.LatLng
-import com.jurgielewicz.simpleweatherapp.R.id.*
 import com.jurgielewicz.simpleweatherapp.adapters.ViewPagerAdapter
 import com.jurgielewicz.simpleweatherapp.fragments.CurrentWeatherFragment
 import com.jurgielewicz.simpleweatherapp.fragments.DailyWeatherFragment
@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var clientId: String
     private lateinit var clientSecret: String
     private val TAG = "MainActivity"
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         clientId = getString(R.string.client_id)
-        clientSecret = getString(R.string.client_id)
+        clientSecret = getString(R.string.client_secret)
 
         setUpViewPager()
 
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(p0: Status?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.d(TAG, p0?.status.toString())
             }
         })
 

@@ -23,15 +23,18 @@ interface WeatherApiService {
                              @Query("client_id") client_id: String,
                              @Query("client_secret") client_secret: String):Observable<Result>
 
+
     companion object {
         fun create(): WeatherApiService{
-            val retrofit = Retrofit.Builder()
+            val retrofit = Retrofit
+                    .Builder()
                     .addConverterFactory(
                             MoshiConverterFactory.create())
                     .addCallAdapterFactory(
                             RxJava2CallAdapterFactory.create())
                     .baseUrl("https://api.aerisapi.com/")
                     .build()
+
             return retrofit.create(WeatherApiService::class.java)
         }
     }
