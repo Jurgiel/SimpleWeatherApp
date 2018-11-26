@@ -1,7 +1,11 @@
 package com.jurgielewicz.simpleweatherapp.utilities
 
+import android.support.v4.view.GravityCompat
+import com.jurgielewicz.simpleweatherapp.R.id.drawer_layout
+import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 fun timestampConverter(num: Long, i: Int): String {
     // i = 0 - date
@@ -18,3 +22,6 @@ fun timestampConverter(num: Long, i: Int): String {
     calendar.timeInMillis = num * 1000
     return formatter.format(calendar.time)
 }
+
+
+

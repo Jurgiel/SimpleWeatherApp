@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.jurgielewicz.simpleweatherapp.utilities.WeatherApiService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -15,6 +16,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var clientId: String
     private lateinit var clientSecret: String
+
+    private val weatherApiService by lazy {
+        WeatherApiService.create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
