@@ -3,6 +3,7 @@ package com.jurgielewicz.simpleweatherapp.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.jurgielewicz.simpleweatherapp.utilities.timestampConverter
 
 class PagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
 
@@ -23,6 +24,8 @@ class PagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
     fun addFragments(item: Fragment, title: String){
         fragmentItems.add(item)
         fragmentTitles.add(title)
+
+
     }
 
 
