@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import com.jurgielewicz.simpleweatherapp.R
-import com.jurgielewicz.simpleweatherapp.adapters.DailyWeatherAdapter
 import com.jurgielewicz.simpleweatherapp.adapters.HourlyWeatherAdapter
 import kotlinx.android.synthetic.main.fragment_current_weather.view.*
 import com.jurgielewicz.simpleweatherapp.models.Response

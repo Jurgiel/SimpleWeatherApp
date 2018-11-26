@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(){
     private var hourlySearched = false
     private var dailySearched = false
     private var latLng: LatLng? = null
+    var details: List<Response>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity(){
                 Log.d(TAG, p0?.status.toString())
             }
         })
-        
+
         viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -98,7 +99,8 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response, 1) },
+                        { result -> updateCurrentFragment(result.response, 1)
+                                    details = result.response},
                         { error -> Log.d("Searching error", error.message) }
                 )
         }
