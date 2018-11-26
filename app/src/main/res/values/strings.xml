@@ -9,4 +9,7 @@
 
     <string name="client_id">syrwXZiZIeYuY3QfQQ2hG</string>
     <string name="client_secret">EVNOuRJ5jpBxFRrNnOmiHJe7X1AhCldMXbBdNIZR</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
