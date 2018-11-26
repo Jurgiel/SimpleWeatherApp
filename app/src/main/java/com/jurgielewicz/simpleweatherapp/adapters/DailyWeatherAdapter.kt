@@ -41,5 +41,5 @@ class DailyWeatherAdapter(val data: List<Response>): RecyclerView.Adapter<ViewHo
             Log.d("DailyWeatherAdapter", e.message)
         }
     }
-    
+
 }
