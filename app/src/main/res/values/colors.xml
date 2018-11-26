@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="minTemp">#2196F3</color>
+    <color name="maxTemp">#0D47A1</color>
+
+    <color name="textPrimary">#606060</color>]
+    <color name="textSecondary">#7e7e7e</color>
+
+    <color name="itemBackgroundColor">#ffffff</color>
+    <color name="backgroundColor">#f0f0f0</color>
+
+    <color name="cityBackgroundTextView">#039BE5</color>
+
+    <color name="floatingButtonCurrentWeather">#ffffff</color>
 </resources>
