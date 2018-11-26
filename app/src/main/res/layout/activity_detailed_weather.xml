@@ -17,15 +17,13 @@
             android:id="@+id/dateTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="224dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="224dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="11/26/2018"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/maxTempTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +31,7 @@
             android:id="@+id/maxTempTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -49,9 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:text="feelsLike"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/minTempTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/maxTempTextView_DetailedActivity" />
 
@@ -61,11 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="humidity"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/popTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTempTextView_DetailedActivity" />
+            app:layout_constraintTop_toBottomOf="@+id/minTempTextView_DetailedActivity"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/popTextView_DetailedActivity"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="pop"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/windspeedTextView_DetailedActivity"
@@ -86,19 +86,21 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="minTemp"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/humidityTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feelsLikeTextView_DetailedActivity" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/icon_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/weatherTextView_DetailedActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside"
@@ -108,10 +110,10 @@
             android:id="@+id/windspeedTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="208dp"
+            android:layout_marginBottom="246dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Windspeed"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +147,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/sunriseTextView_DetailedActivity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_DetailedActivity" />
 
         <TextView
             android:id="@+id/sunsetTextView_DetailedActivity"
