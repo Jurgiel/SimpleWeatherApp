@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.jurgielewicz.simpleweatherapp.adapters.ViewPagerAdapter
 import com.jurgielewicz.simpleweatherapp.fragments.CurrentWeatherFragment
 import com.jurgielewicz.simpleweatherapp.fragments.DailyWeatherFragment
+import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.utilities.WeatherApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -105,4 +106,12 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    fun updateCurrentFragment(v: List<Response>){
+        val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.getCurrentItem())
+        if (0 == viewPager.getCurrentItem() && null != fragment) {
+            (fragment as CurrentWeatherFragment).updateRecView(v)
+        } else {
+            (fragment as DailyWeatherFragment).updateRecView(v)
+        }
+    }
 }
