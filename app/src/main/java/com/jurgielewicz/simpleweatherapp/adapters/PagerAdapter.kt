@@ -2,10 +2,9 @@ package com.jurgielewicz.simpleweatherapp.adapters
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import com.jurgielewicz.simpleweatherapp.utilities.timestampConverter
+import android.support.v4.app.FragmentPagerAdapter
 
-class PagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
+class ViewPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
     var fragmentItems: ArrayList<Fragment> = ArrayList()
     var fragmentTitles: ArrayList<String> = ArrayList()
