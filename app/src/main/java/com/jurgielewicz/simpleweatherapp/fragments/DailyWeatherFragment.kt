@@ -27,7 +27,7 @@ class DailyWeatherFragment : Fragment() {
     }
 
     fun updateRecView(v: List<Response>){
-        rootView?.hourlyRecycler?.adapter = DailyWeatherAdapter(v)
+        rootView?.dailyRecycler?.adapter = DailyWeatherAdapter(v)
     }
 
 }

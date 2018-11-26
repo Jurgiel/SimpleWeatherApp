@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
     private lateinit var clientId: String
     private lateinit var clientSecret: String
     private val TAG = "MainActivity"
@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
     private val weatherApiService by lazy {
         WeatherApiService.create()
     }
+    private var hourlySearched = false
+    private var dailySearched = false
+    private var latLng: LatLng? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,15 @@ class MainActivity : AppCompatActivity() {
         val autocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment) as PlaceAutocompleteFragment
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place?) {
-                search(p0?.latLng, 0)
+                hourlySearched = false
+                dailySearched = false
+                latLng = p0?.latLng
+                search(latLng, viewPager.currentItem)
+                if(viewPager.currentItem == 0){
+                    hourlySearched = true
+                } else {
+                    dailySearched = true
+                }
                 closeDrawer()
             }
 
@@ -51,31 +62,47 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, p0?.status.toString())
             }
         })
-
+        
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+            override fun onPageSelected(position: Int) {
+                    if(viewPager.currentItem == 0 && hourlySearched == false && latLng != null){
+                        search(latLng, 0)
+                        Log.d("Debuging", "check if 0")
+                        hourlySearched = true
+                    }
+                    if(viewPager.currentItem == 1 && dailySearched == false && latLng != null){
+                        search(latLng, 1)
+                        Log.d("Debuging", "check if 1")
+                        dailySearched = true
+                    }
+            }
+        })
     }
     fun search(latLng: LatLng?, i: Int) {
         //0- hourly, 1- daily
-
-        dispose = weatherApiService
+        when (i) {
+        0 -> dispose = weatherApiService
                 .requestHourlyWeather(latLng!!.latitude, latLng!!.longitude, clientId, clientSecret)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> Log.d(TAG.plus("  hourly"), result.response[0].periods[0].weather) },
+                        { result -> updateCurrentFragment(result.response, 0)  },
                         { error -> Log.d("Searching error", error.message) }
                 )
-
-        dispose = weatherApiService
+        1 -> dispose = weatherApiService
                 .requestDailyWeather(latLng!!.latitude, latLng!!.longitude, clientId, clientSecret)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> Log.d(TAG.plus("  daily"), result.response[0].periods[0].weather) },
+                        { result -> updateCurrentFragment(result.response, 1) },
                         { error -> Log.d("Searching error", error.message) }
                 )
+        }
     }
-
-
 
     fun setUpViewPager(){
         var pagerAdapter = ViewPagerAdapter(supportFragmentManager)
@@ -88,6 +115,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    private fun updateCurrentFragment(v: List<Response>, i: Int){
+        val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.currentItem)
+       when(i) {
+           0->(fragment as CurrentWeatherFragment).updateRecView(v)
+           1->(fragment as DailyWeatherFragment).updateRecView(v)
+       }
+    }
+
+    override fun onPause() {
+        dispose?.dispose()
+        super.onPause()
+    }
     fun closeDrawer(){
         if(drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -100,18 +140,5 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
-    override fun onPause() {
-        dispose?.dispose()
-        super.onPause()
-    }
-
-    fun updateCurrentFragment(v: List<Response>){
-        val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.getCurrentItem())
-        if (0 == viewPager.getCurrentItem() && null != fragment) {
-            (fragment as CurrentWeatherFragment).updateRecView(v)
-        } else {
-            (fragment as DailyWeatherFragment).updateRecView(v)
-        }
-    }
 }
+
