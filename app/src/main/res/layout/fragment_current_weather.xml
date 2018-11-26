@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CurrentWeatherFragment">
+    tools:background="#f0f0f0"
+    tools:context=".fragments.CurrentWeather">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/current_weather_Holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/cityTextView_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/cityBackgroundTextView"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:text="Warsaw"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="#FAFAFA"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/weatherTextView_CurrentLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weatherTextView_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Scattered clouds"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#616161"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityTextView_CurrentLayout" />
+
+            <ImageView
+                android:id="@+id/icon_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="48dp"
+                android:src="@android:drawable/sym_def_app_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weatherTextView_CurrentLayout" />
+
+            <TextView
+                android:id="@+id/temperatureTextView_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="128dp"
+                android:layout_marginRight="128dp"
+                android:layout_marginTop="32dp"
+                android:text="-10"
+                android:textColor="@color/textPrimary"
+                android:textSize="80sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weatherTextView_CurrentLayout" />
+
+            <TextView
+                android:id="@+id/maxTemptTextView_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="135dp"
+                android:text="MAX: 15"
+                android:textColor="@color/maxTemp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/temperatureTextView_CurrentLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/minTempTextView_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:text="MIN: 10"
+                android:textColor="@color/minTemp"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/temperatureTextView_CurrentLayout" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/moreFloatingButton_CurrentLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="79dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/floatingButtonCurrentWeather"
+                android:clickable="true"
+                android:src="@drawable/ic_down_arrow"
+                app:backgroundTint="@android:color/transparent"
+                app:elevation="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/maxTemptTextView_CurrentLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hourlyHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/itemBackgroundColor"/>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>
