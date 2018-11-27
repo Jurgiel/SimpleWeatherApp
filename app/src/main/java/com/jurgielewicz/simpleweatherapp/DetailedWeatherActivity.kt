@@ -3,6 +3,7 @@ package com.jurgielewicz.simpleweatherapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.models.Result
 import com.jurgielewicz.simpleweatherapp.utilities.downloadImage
 import com.jurgielewicz.simpleweatherapp.utilities.getIconUrl
@@ -15,11 +16,11 @@ class DetailedWeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_weather)
 
-        val details = intent.getParcelableExtra<Result>("detailed_weather")
+        val details = intent.getParcelableExtra<Response>("detailed_weather")
         val position = intent.getIntExtra("position", 0)
 
-        Log.d("DetailedActivity", details.response[0].periods[position].weather)
-        val data = details.response[0].periods[position]
+        Log.d("DetailedActivity", details.periods[position].weather)
+        val data = details.periods[position]
 
         dateTextView_DetailedActivity.text = timestampConverter(data.timestamp, 3)
         maxTempTextView_DetailedActivity.text = data.maxTempC.toString().plus("℃\t")

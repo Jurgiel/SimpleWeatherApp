@@ -35,8 +35,6 @@ class HourlyWeatherAdapter(val periods:List<Periods>): RecyclerView.Adapter<View
         holder.itemView.weatherTextView_hourly_weather_row.text = periods[position].weather
 
         downloadImage(getIconUrl(periods[position].icon), holder.itemView.icon_hourly_weather_row, 200, 200)
-
-
     }
 
 

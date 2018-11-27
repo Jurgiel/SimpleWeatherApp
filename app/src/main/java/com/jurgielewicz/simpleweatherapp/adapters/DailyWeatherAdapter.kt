@@ -34,7 +34,6 @@ class DailyWeatherAdapter(val periods:List<Periods>): RecyclerView.Adapter<ViewH
         holder.itemView.maxTempTextView_daily_weather_row.text = periods[position].maxTempC.toString().plus("℃\t")
         holder.itemView.minTempTextView_daily_weather_row.text = periods[position].minTempC.toString().plus("℃\t")
 
-
         downloadImage(getIconUrl(periods[position].icon), holder.itemView.icon_daily_weather_row, 200, 200)
 
     }
