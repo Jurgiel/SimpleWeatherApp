@@ -14,6 +14,7 @@ import com.jurgielewicz.simpleweatherapp.MainActivity
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.DailyWeatherAdapter
 import com.jurgielewicz.simpleweatherapp.models.Response
+import com.jurgielewicz.simpleweatherapp.models.Result
 import com.jurgielewicz.simpleweatherapp.utilities.OnItemClickListener
 import com.jurgielewicz.simpleweatherapp.utilities.addOnItemClickListener
 import kotlinx.android.synthetic.main.fragment_current_weather.view.*
@@ -31,7 +32,9 @@ class DailyWeatherFragment : Fragment() {
         rootView!!.dailyRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 val intent = Intent(context, DetailedWeatherActivity::class.java)
+                intent.putExtra("detailed_weather", Result(data!!))
                 startActivity(intent)
+
             }
         })
         return rootView
