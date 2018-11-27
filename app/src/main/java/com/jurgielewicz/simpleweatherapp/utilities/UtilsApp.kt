@@ -5,31 +5,24 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import com.jurgielewicz.simpleweatherapp.MainActivity
-import com.jurgielewicz.simpleweatherapp.models.Response
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.row_hourly_weather.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-fun timestampConverter(num: Long, i: Int): String {
-    // i = 0 - date
-    // i = 1 - day
-    // i== 2 - hour
-    //i == 3 - day, date
-    var format = "EEE"
+fun timeConverter(string: String, i: Int): String {
+    val isoFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    var expectedFormat = "dd/MM"
     when(i){
-        0 -> format = "dd/MM"
-        1 -> format = "EEE"
-        2 -> format = "HH:mm"
-        3-> format = "EEE, dd/MM"
+        0 -> expectedFormat = "dd/MM"
+        1 -> expectedFormat = "EEE"
+        2 -> expectedFormat = "HH:mm"
+        3 -> expectedFormat = "EEE, dd/MM"
     }
-    val formatter = SimpleDateFormat(format)
-    val calendar = Calendar.getInstance()
-    calendar.timeInMillis = num * 1000
-    return formatter.format(calendar.time)
+    val dateFormat = SimpleDateFormat(isoFormat, Locale.getDefault())
+    var date = dateFormat.parse(string)
+    return SimpleDateFormat(expectedFormat).format(date)
 }
+
 interface OnItemClickListener {
     fun onItemClicked(position: Int, view: View)
 }
@@ -49,10 +42,6 @@ fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
     })
 }
 
-fun getDetails():List<Response>{
-    return MainActivity().details!!
-}
-
 fun downloadImage(imageUrl: String, imageView: ImageView, width: Int, height: Int){
     try{
         Picasso.get()
@@ -68,8 +57,3 @@ fun downloadImage(imageUrl: String, imageView: ImageView, width: Int, height: In
 fun getIconUrl(iconId: String): String{
     return  "https://cdn.aerisapi.com/wxicons/v2/$iconId"
 }
-
-
-
-
-

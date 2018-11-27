@@ -5,21 +5,20 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Periods(val timestamp: Long,
-                   val validTime: String,
                    val dateTimeISO: String,
+                   val tempC: Int?,
                    val maxTempC: Int,
                    val minTempC: Int,
                    val avgTempC: Int,
                    val humidity: Int,
-                   val tempC: Int?,
                    val pop: Double?,
                    val feelsLikeC: Int,
                    val weather: String,
                    val weatherPrimary: String,
                    val icon: String,
                    val windSpeedKPH: Int,
-                   val sunrise: Long,
-                   val sunset: Long) : Parcelable
+                   val sunriseISO: String,
+                   val sunsetISO: String) : Parcelable
 @Parcelize
 data class Response(val periods: List<Periods>) : Parcelable
 

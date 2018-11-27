@@ -36,7 +36,6 @@ class DailyWeatherFragment : Fragment() {
                 intent.putExtra("detailed_weather", Response(data!!))
                 intent.putExtra("position", position)
                 startActivity(intent)
-
             }
         })
         return rootView
