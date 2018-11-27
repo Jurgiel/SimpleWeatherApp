@@ -37,17 +37,17 @@
             android:layout_marginTop="16dp"
             android:text="maxTemp"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/feelsLikeTextView_DetailedActivity"
+            app:layout_constraintBottom_toTopOf="@+id/averageTempTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTextView_DetailedActivity" />
 
         <TextView
-            android:id="@+id/feelsLikeTextView_DetailedActivity"
+            android:id="@+id/averageTempTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:text="feelsLike"
+            android:text="averagetemp"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/minTempTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/humidityTextView_DetailedActivity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/feelsLikeTextView_DetailedActivity" />
+            app:layout_constraintTop_toBottomOf="@+id/averageTempTextView_DetailedActivity" />
 
         <ImageView
             android:id="@+id/icon_DetailedActivity"
@@ -124,14 +124,13 @@
             android:id="@+id/sunriseTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:layout_marginBottom="344dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="sunrise"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sunsetTextView_DetailedActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weatherTextView_DetailedActivity" />
 
@@ -141,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="Sunny"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -153,15 +152,14 @@
             android:id="@+id/sunsetTextView_DetailedActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="323dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="sunset"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sunriseTextView_DetailedActivity"
-            app:layout_constraintVertical_bias="0.006" />
+            app:layout_constraintTop_toBottomOf="@+id/sunriseTextView_DetailedActivity" />
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

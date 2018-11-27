@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.jurgielewicz.simpleweatherapp.models.Response
-import com.jurgielewicz.simpleweatherapp.models.Result
 import com.jurgielewicz.simpleweatherapp.utilities.downloadImage
 import com.jurgielewicz.simpleweatherapp.utilities.getIconUrl
 import com.jurgielewicz.simpleweatherapp.utilities.timestampConverter
@@ -23,15 +22,15 @@ class DetailedWeatherActivity : AppCompatActivity() {
         val data = details.periods[position]
 
         dateTextView_DetailedActivity.text = timestampConverter(data.timestamp, 3)
-        maxTempTextView_DetailedActivity.text = data.maxTempC.toString().plus("℃\t")
-        feelsLikeTextView_DetailedActivity.text = data.feelsLikeC.toString().plus("℃\t")
-        humidityTextView_DetailedActivity.text = data.humidity.toString().plus("%")
-        popTextView_DetailedActivity.text = data.pop.toString().plus("%")
-        minTempTextView_DetailedActivity.text = data.minTempC.toString().plus("℃\t")
-        windspeedTextView_DetailedActivity.text = data.windSpeedKPH.toString().plus(" km/h")
-        sunriseTextView_DetailedActivity.text= timestampConverter(data.sunrise, 2)
+        maxTempTextView_DetailedActivity.text = "MAX: " + data.maxTempC.toString() + ("℃\t")
+        averageTempTextView_DetailedActivity.text = "AVERAGE: " + data.avgTempC.toString().plus("℃\t")
+        humidityTextView_DetailedActivity.text = "HUMIDITY: " + data.humidity.toString().plus("%")
+        popTextView_DetailedActivity.text = "PRECIPTATION" + data.pop.toString().plus("%")
+        minTempTextView_DetailedActivity.text = "MIN: " + data.minTempC.toString().plus("℃\t")
+        windspeedTextView_DetailedActivity.text = "WIND SPEED" + data.windSpeedKPH.toString().plus(" km/h")
+        sunriseTextView_DetailedActivity.text = "SUNRISE" + timestampConverter(data.sunrise, 2)
         weatherTextView_DetailedActivity.text = data.weather
-        sunsetTextView_DetailedActivity.text = timestampConverter(data.sunset, 2)
+        sunsetTextView_DetailedActivity.text = "SUNSET" + timestampConverter(data.sunset, 2)
         downloadImage(getIconUrl(data.icon), icon_DetailedActivity, 250, 250)
     }
 }
