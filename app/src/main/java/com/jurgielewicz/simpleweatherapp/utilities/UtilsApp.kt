@@ -51,11 +51,11 @@ fun getDetails():List<Response>{
     return MainActivity().details!!
 }
 
-fun downloadImage(imageUrl: String, imageView: ImageView){
+fun downloadImage(imageUrl: String, imageView: ImageView, width: Int, height: Int){
     try{
         Picasso.get()
                 .load(imageUrl)
-                .resize(200, 200)
+                .resize(width, height)
                 .centerInside()
                 .into(imageView)
     } catch (e: Exception) {

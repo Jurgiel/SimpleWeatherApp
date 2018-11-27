@@ -33,7 +33,7 @@ class DailyWeatherAdapter(val data: List<Response>): RecyclerView.Adapter<ViewHo
         holder.itemView.minTempTextView_daily_weather_row.text = data[0].periods[position].minTempC.toString().plus("℃\t")
 
         val imageUrl = "https://cdn.aerisapi.com/wxicons/v2/${data[0].periods[position].icon}"
-        downloadImage(imageUrl, holder.itemView.icon_daily_weather_row)
+        downloadImage(imageUrl, holder.itemView.icon_daily_weather_row, 200, 200)
 
     }
 

@@ -32,7 +32,7 @@ class HourlyWeatherAdapter(val data:List<Response>): RecyclerView.Adapter<ViewHo
         holder.itemView.weatherTextView_hourly_weather_row.text = data[0].periods[position].weather
 
         val imageUrl = "https://cdn.aerisapi.com/wxicons/v2/${data[0].periods[position].icon}"
-        downloadImage(imageUrl, holder.itemView.icon_hourly_weather_row)
+        downloadImage(imageUrl, holder.itemView.icon_hourly_weather_row, 200, 200)
 
 
     }
