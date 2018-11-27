@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.models.ViewHolder
+import com.jurgielewicz.simpleweatherapp.utilities.downloadImage
 import com.jurgielewicz.simpleweatherapp.utilities.timestampConverter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_hourly_weather.view.*
@@ -31,15 +32,8 @@ class HourlyWeatherAdapter(val data:List<Response>): RecyclerView.Adapter<ViewHo
         holder.itemView.weatherTextView_hourly_weather_row.text = data[0].periods[position].weather
 
         val imageUrl = "https://cdn.aerisapi.com/wxicons/v2/${data[0].periods[position].icon}"
-        try{
-            Picasso.get()
-                    .load(imageUrl)
-                    .resize(200, 200)
-                    .centerInside()
-                    .into(holder.itemView.icon_hourly_weather_row)
-        } catch (e: Exception) {
-            Log.d("DailyWeatherAdapter", e.message)
-        }
+        downloadImage(imageUrl, holder.itemView.icon_hourly_weather_row)
+
 
     }
 

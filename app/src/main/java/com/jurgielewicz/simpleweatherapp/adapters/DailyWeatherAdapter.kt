@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.models.ViewHolder
+import com.jurgielewicz.simpleweatherapp.utilities.downloadImage
 import com.jurgielewicz.simpleweatherapp.utilities.timestampConverter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_daily_weather.view.*
+import kotlinx.android.synthetic.main.row_hourly_weather.view.*
 
 class DailyWeatherAdapter(val data: List<Response>): RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,15 +33,8 @@ class DailyWeatherAdapter(val data: List<Response>): RecyclerView.Adapter<ViewHo
         holder.itemView.minTempTextView_daily_weather_row.text = data[0].periods[position].minTempC.toString().plus("℃\t")
 
         val imageUrl = "https://cdn.aerisapi.com/wxicons/v2/${data[0].periods[position].icon}"
-        try {
-            Picasso.get()
-                    .load(imageUrl)
-                    .resize(200, 200)
-                    .centerInside()
-                    .into(holder.itemView.icon_daily_weather_row)
-        } catch (e: Exception) {
-            Log.d("DailyWeatherAdapter", e.message)
-        }
+        downloadImage(imageUrl, holder.itemView.icon_daily_weather_row)
+
     }
 
 }

@@ -2,9 +2,13 @@ package com.jurgielewicz.simpleweatherapp.utilities
 
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import com.jurgielewicz.simpleweatherapp.MainActivity
 import com.jurgielewicz.simpleweatherapp.models.Response
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.row_hourly_weather.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,16 +39,28 @@ fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
         }
 
         override fun onChildViewAttachedToWindow(view: View?) {
-            view?.setOnClickListener({
+            view?.setOnClickListener {
                 val holder = getChildViewHolder(view)
                 onClickListener.onItemClicked(holder.adapterPosition, view)
-            })
+            }
         }
     })
 }
 
 fun getDetails():List<Response>{
     return MainActivity().details!!
+}
+
+fun downloadImage(imageUrl: String, imageView: ImageView){
+    try{
+        Picasso.get()
+                .load(imageUrl)
+                .resize(200, 200)
+                .centerInside()
+                .into(imageView)
+    } catch (e: Exception) {
+        Log.d("DailyWeatherAdapter", e.message)
+    }
 }
 
 

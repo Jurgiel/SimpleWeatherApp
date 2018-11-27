@@ -12,6 +12,8 @@ class DetailedWeatherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detailed_weather)
 
         val details = intent.getParcelableExtra<Result>("detailed_weather")
-        Log.d("DetailedActivity", details.response[0].periods[0].weather)
+        val position = intent.getIntExtra("position", 0)
+
+        Log.d("DetailedActivity", details.response[0].periods[position].weather)
     }
 }

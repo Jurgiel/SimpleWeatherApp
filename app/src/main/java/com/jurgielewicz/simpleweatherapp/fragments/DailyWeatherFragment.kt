@@ -13,6 +13,7 @@ import com.jurgielewicz.simpleweatherapp.MainActivity
 
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.DailyWeatherAdapter
+import com.jurgielewicz.simpleweatherapp.models.Periods
 import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.models.Result
 import com.jurgielewicz.simpleweatherapp.utilities.OnItemClickListener
@@ -33,6 +34,7 @@ class DailyWeatherFragment : Fragment() {
             override fun onItemClicked(position: Int, view: View) {
                 val intent = Intent(context, DetailedWeatherActivity::class.java)
                 intent.putExtra("detailed_weather", Result(data!!))
+                intent.putExtra("position", position)
                 startActivity(intent)
 
             }
