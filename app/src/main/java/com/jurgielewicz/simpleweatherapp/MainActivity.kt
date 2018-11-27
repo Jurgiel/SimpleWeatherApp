@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.jurgielewicz.simpleweatherapp.adapters.ViewPagerAdapter
 import com.jurgielewicz.simpleweatherapp.fragments.CurrentWeatherFragment
 import com.jurgielewicz.simpleweatherapp.fragments.DailyWeatherFragment
+import com.jurgielewicz.simpleweatherapp.models.Periods
 import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.utilities.WeatherApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response, 0)  },
+                        { result -> updateCurrentFragment(result.response[0].periods, 0)  },
                         { error -> Log.d("Searching error", error.message) }
                 )
         1 -> dispose = weatherApiService
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response, 1)
+                        { result -> updateCurrentFragment(result.response[0].periods, 1)
                                     details = result.response},
                         { error -> Log.d("Searching error", error.message) }
                 )
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity(){
     }
 
 
-    private fun updateCurrentFragment(v: List<Response>, i: Int){
+    private fun updateCurrentFragment(v: List<Periods>, i: Int){
         val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.currentItem)
        when(i) {
            0->(fragment as CurrentWeatherFragment).updateRecView(v)

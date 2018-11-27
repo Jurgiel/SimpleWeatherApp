@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
 
 class DailyWeatherFragment : Fragment() {
    private var rootView: View? = null
-    private var data: List<Response>? = null
+    private var data: List<Periods>? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_daily_weather, container, false)
@@ -33,7 +33,7 @@ class DailyWeatherFragment : Fragment() {
         rootView!!.dailyRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 val intent = Intent(context, DetailedWeatherActivity::class.java)
-                intent.putExtra("detailed_weather", Result(data!!))
+                intent.putExtra("detailed_weather", Response(data!!))
                 intent.putExtra("position", position)
                 startActivity(intent)
 
@@ -42,7 +42,7 @@ class DailyWeatherFragment : Fragment() {
         return rootView
     }
 
-    fun updateRecView(v: List<Response>){
+    fun updateRecView(v: List<Periods>){
         data = v
         rootView?.dailyRecycler?.adapter = DailyWeatherAdapter(v)
     }

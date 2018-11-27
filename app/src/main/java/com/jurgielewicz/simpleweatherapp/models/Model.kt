@@ -16,7 +16,9 @@ data class Periods(val timestamp: Long,
                    val weather: String,
                    val weatherPrimary: String,
                    val icon: String,
-                   val windSpeedKPH: Int) : Parcelable
+                   val windSpeedKPH: Int,
+                   val sunrise: Long,
+                   val sunset: Long) : Parcelable
 @Parcelize
 data class Response(val periods: List<Periods>) : Parcelable
 

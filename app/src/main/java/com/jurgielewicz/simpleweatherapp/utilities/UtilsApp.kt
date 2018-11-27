@@ -17,11 +17,13 @@ fun timestampConverter(num: Long, i: Int): String {
     // i = 0 - date
     // i = 1 - day
     // i== 2 - hour
+    //i == 3 - day, date
     var format = "EEE"
     when(i){
         0 -> format = "dd/MM"
         1 -> format = "EEE"
         2 -> format = "HH:mm"
+        3-> format = "EEE, dd/MM"
     }
     val formatter = SimpleDateFormat(format)
     val calendar = Calendar.getInstance()
@@ -61,6 +63,10 @@ fun downloadImage(imageUrl: String, imageView: ImageView, width: Int, height: In
     } catch (e: Exception) {
         Log.d("DailyWeatherAdapter", e.message)
     }
+}
+
+fun getIconUrl(iconId: String): String{
+    return  "https://cdn.aerisapi.com/wxicons/v2/$iconId}"
 }
 
 

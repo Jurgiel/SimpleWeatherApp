@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.HourlyWeatherAdapter
+import com.jurgielewicz.simpleweatherapp.models.Periods
 import kotlinx.android.synthetic.main.fragment_current_weather.view.*
 import com.jurgielewicz.simpleweatherapp.models.Response
 
@@ -25,7 +26,7 @@ class CurrentWeatherFragment : Fragment() {
         return rootView
     }
 
-    fun updateRecView(v: List<Response>){
+    fun updateRecView(v: List<Periods>){
         rootView?.hourlyRecycler?.adapter = HourlyWeatherAdapter(v)
     }
 
