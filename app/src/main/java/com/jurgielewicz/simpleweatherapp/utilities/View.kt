@@ -4,7 +4,6 @@ package com.jurgielewicz.simpleweatherapp.utilities
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-
 interface OnItemClickListener {
     fun onItemClicked(position: Int, view: View)
 }
