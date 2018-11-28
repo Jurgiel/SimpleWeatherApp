@@ -1,6 +1,7 @@
 package com.jurgielewicz.simpleweatherapp.utilities
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -15,6 +16,13 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         p0?.execSQL("DROP TABLE IF EXISTS $TABLE_PLACES")
+    }
+
+    fun getData():Cursor{
+        val db = this.writableDatabase
+        val query = "SELECT * FROM $TABLE_PLACES"
+        val data = db.rawQuery(query, null)
+        return data
     }
 
     companion object {
