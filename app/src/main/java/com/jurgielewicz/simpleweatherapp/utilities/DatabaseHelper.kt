@@ -37,6 +37,12 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
     }
 
+    fun deletePlace(lat:Double, lng: Double){
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng")
+        db.close()
+    }
+
     companion object {
 
         private const val DATABASE_VERSION = 1
