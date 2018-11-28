@@ -110,22 +110,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/temperatureTextView_CurrentLayout" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/moreFloatingButton_CurrentLayout"
+            <ImageButton
+                android:id="@+id/saveLocationButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="79dp"
+                android:layout_marginBottom="71dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/floatingButtonCurrentWeather"
-                android:clickable="true"
-                android:src="@drawable/ic_down_arrow"
-                app:backgroundTint="@android:color/transparent"
-                app:elevation="0dp"
+                android:background="@android:color/transparent"
+                android:onClick="saveOnClick"
+                android:src="@drawable/ic_not_saved"
                 app:layout_constraintBottom_toTopOf="@+id/maxTemptTextView_CurrentLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.RecyclerView
