@@ -1,4 +1,4 @@
-package com.jurgielewicz.simpleweatherapp.utilities
+package com.jurgielewicz.simpleweatherapp.database
 
 import android.content.Context
 import android.database.Cursor
