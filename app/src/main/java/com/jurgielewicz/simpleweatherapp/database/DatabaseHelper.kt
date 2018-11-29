@@ -38,27 +38,14 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
     }
 
-<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
-<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
-<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
-=======
-=======
->>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
-    fun deletePlace(lat:Double, lng: Double){
-=======
+
     fun deletePlace(lat:Double, lng: Double) {
->>>>>>> parent of f086606... Revert "row existCheck":app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
         val db = this.writableDatabase
         db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng")
         db.close()
     }
 
-<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
-<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
->>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
-=======
->>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
-=======
+
     fun existsCheck(lat: Double, lng: Double): Boolean {
         val db= this.writableDatabase
         val query = "SELECT 1 FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng"
@@ -73,7 +60,6 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         return false
     }
 
->>>>>>> parent of f086606... Revert "row existCheck":app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
     companion object {
 
         private const val DATABASE_VERSION = 1
