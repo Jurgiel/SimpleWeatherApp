@@ -15,4 +15,4 @@ TODO:
 - User can't request weather in same location for x time.
 - Replcace SQLITE with Anko Sqlite 
 - Place text inside strings.xml
-- Work on better layout
+- better layout
