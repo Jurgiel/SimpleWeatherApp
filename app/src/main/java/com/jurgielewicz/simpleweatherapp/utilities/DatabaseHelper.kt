@@ -22,9 +22,10 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     fun getData():Cursor{
         val db = this.writableDatabase
         val query = "SELECT * FROM $TABLE_PLACES"
-        val data = db.rawQuery(query, null)
+        val cursor = db.rawQuery(query, null)
+        cursor.close()
         db.close()
-        return data
+        return cursor
     }
 
     fun addPlace(name: String, lat: Double, lng: Double){
@@ -37,10 +38,24 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
     }
 
-    fun deletePlace(lat:Double, lng: Double){
+    fun deletePlace(lat:Double, lng: Double) {
         val db = this.writableDatabase
         db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng")
         db.close()
+    }
+
+    fun existsCheck(lat: Double, lng: Double): Boolean {
+        val db= this.writableDatabase
+        val query = "SELECT 1 FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng"
+        val cursor = db.rawQuery(query, null)
+        if(cursor.count > 0){
+            cursor.close()
+            db.close()
+            return true
+        }
+        cursor.close()
+        db.close()
+        return false
     }
 
     companion object {
