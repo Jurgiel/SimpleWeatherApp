@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Places(val id: Long?, val name: String?, val lat: Double?, val lng: Double?):Parcelable
+data class Places(val id: Int?, val name: String?, val lat: Double?, val lng: Double?):Parcelable
 
 @Parcelize
 data class Periods(val timestamp: Long,

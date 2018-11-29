@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.jurgielewicz.simpleweatherapp.models.Places
 
 class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(p0: SQLiteDatabase?) {
@@ -19,36 +20,49 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         p0?.execSQL("DROP TABLE IF EXISTS $TABLE_PLACES")
     }
 
-    fun getData():Cursor{
+    fun getData():List<Places>{
         val db = this.writableDatabase
         val query = "SELECT * FROM $TABLE_PLACES"
         val cursor = db.rawQuery(query, null)
+        val placesList = ArrayList<Places>()
+
+        if(cursor.moveToFirst()){
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
+                val name = cursor.getString(cursor.getColumnIndex("name"))
+                val lat = cursor.getDouble(cursor.getColumnIndex("lat"))
+                val lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+
+               val place = Places(id, name, lat, lng)
+                placesList.add(place)
+            }while (cursor.moveToNext())
+        }
         cursor.close()
         db.close()
-        return cursor
+        return placesList
     }
 
-    fun addPlace(name: String, lat: Double, lng: Double){
+    fun addPlace(place: Places){
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(COLUMN_NAME, name)
-        values.put(COLUMN_LAT, lat)
-        values.put(COLUMN_LNG, lng)
+        values.put(COLUMN_NAME, place.name)
+        values.put(COLUMN_LAT, place.lat)
+        values.put(COLUMN_LNG, place.lng)
         db.insert(TABLE_PLACES, null, values)
         db.close()
     }
 
 
-    fun deletePlace(lat:Double, lng: Double) {
+    fun deletePlace(place: Places) {
         val db = this.writableDatabase
-        db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng")
+        db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = ${place.lat} AND $COLUMN_LNG = ${place.lng}")
         db.close()
     }
 
 
-    fun existsCheck(lat: Double, lng: Double): Boolean {
+    fun existsCheck(place: Places): Boolean {
         val db= this.writableDatabase
-        val query = "SELECT 1 FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng"
+        val query = "SELECT 1 FROM $TABLE_PLACES WHERE $COLUMN_LAT = ${place.lat} AND $COLUMN_LNG = ${place.lng}"
         val cursor = db.rawQuery(query, null)
         if(cursor.count > 0){
             cursor.close()
