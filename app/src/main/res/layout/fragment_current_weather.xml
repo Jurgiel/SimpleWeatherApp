@@ -56,12 +56,12 @@
                 android:id="@+id/icon_CurrentLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:src="@android:drawable/sym_def_app_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weatherTextView_CurrentLayout" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/temperatureTextView_CurrentLayout"
@@ -73,13 +73,13 @@
                 android:layout_marginTop="32dp"
                 android:text="-10"
                 android:textColor="@color/textPrimary"
-                android:textSize="80sp"
+                android:textSize="70sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weatherTextView_CurrentLayout" />
 
             <TextView
-                android:id="@+id/maxTemptTextView_CurrentLayout"
+                android:id="@+id/feelsLikeTextView_CurrentLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -87,15 +87,15 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="135dp"
-                android:text="MAX: 15"
+                android:text="Feels like -16°C"
                 android:textColor="@color/maxTemp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/temperatureTextView_CurrentLayout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/minTempTextView_CurrentLayout"
+                android:id="@+id/dateTextView_CurentLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
@@ -103,7 +103,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:text="MIN: 10"
+                android:text="WED, 21/11"
                 android:textColor="@color/minTemp"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -121,7 +121,7 @@
                 android:background="@android:color/transparent"
                 android:onClick="saveOnClick"
                 android:src="@drawable/ic_not_saved"
-                app:layout_constraintBottom_toTopOf="@+id/maxTemptTextView_CurrentLayout"
+                app:layout_constraintBottom_toTopOf="@+id/feelsLikeTextView_CurrentLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

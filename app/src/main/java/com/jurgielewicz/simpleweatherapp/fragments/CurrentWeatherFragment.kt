@@ -15,6 +15,10 @@ import com.jurgielewicz.simpleweatherapp.adapters.HourlyWeatherAdapter
 import com.jurgielewicz.simpleweatherapp.database.DatabaseHelper
 import com.jurgielewicz.simpleweatherapp.models.Periods
 import com.jurgielewicz.simpleweatherapp.models.Places
+import com.jurgielewicz.simpleweatherapp.utilities.downloadImage
+import com.jurgielewicz.simpleweatherapp.utilities.getIconUrl
+import com.jurgielewicz.simpleweatherapp.utilities.timeConverter
+import kotlinx.android.synthetic.main.fragment_current_weather.*
 import kotlinx.android.synthetic.main.fragment_current_weather.view.*
 
 
@@ -41,8 +45,14 @@ class CurrentWeatherFragment : Fragment() {
     }
 
     fun updateRecView(v: List<Periods>, p: Places){
-
         place = p
         rootView?.hourlyRecycler?.adapter = HourlyWeatherAdapter(v)
+
+        cityTextView_CurrentLayout.text = p.name
+        weatherTextView_CurrentLayout.text = v[0].weather
+        temperatureTextView_CurrentLayout.text = v[0].tempC.toString().plus("°C")
+        feelsLikeTextView_CurrentLayout.text = "Feels like " + v[0].tempC.toString().plus("°C")
+        downloadImage(getIconUrl(v[0].icon), icon_CurrentLayout, 300, 300)
+        dateTextView_CurentLayout.text = timeConverter(v[0].dateTimeISO, 3)
     }
 }
