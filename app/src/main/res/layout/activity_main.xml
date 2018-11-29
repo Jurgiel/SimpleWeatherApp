@@ -19,18 +19,52 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
-            <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-             android:layout_height="match_parent">
-             <include layout="@layout/nav_header_main"
-            android:id="@+id/my" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView_NavBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundColor"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/my"
+                layout="@layout/nav_header_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView_NavBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my"
+                tools:text="SAVED PLACES" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_NavBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/itemBackgroundColor"
+                app:layout_constraintTop_toBottomOf="@+id/my"
+                tools:layout_editor_absoluteX="16dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
 
     </android.support.design.widget.NavigationView>
 

@@ -12,7 +12,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         val CREATE_PLACES_TABLE = ("CREATE TABLE $TABLE_PLACES($COLUMN_ID INTEGER PRIMARY KEY, " +
                 "$COLUMN_NAME TEXT, " +
                 "$COLUMN_LAT REAL, " +
-                "$COLUMN_LNG REAL")
+                "$COLUMN_LNG REAL)")
         p0?.execSQL(CREATE_PLACES_TABLE)
     }
 
@@ -21,17 +21,17 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     fun getData():List<Places>{
-        val db = this.writableDatabase
+        val db = this.readableDatabase
         val query = "SELECT * FROM $TABLE_PLACES"
         val cursor = db.rawQuery(query, null)
         val placesList = ArrayList<Places>()
 
         if(cursor.moveToFirst()){
             do {
-                val id = cursor.getInt(cursor.getColumnIndex("id"))
-                val name = cursor.getString(cursor.getColumnIndex("name"))
-                val lat = cursor.getDouble(cursor.getColumnIndex("lat"))
-                val lng = cursor.getDouble(cursor.getColumnIndex("lng"))
+                val id = cursor.getInt(0)
+                val name = cursor.getString(1)
+                val lat = cursor.getDouble(2)
+                val lng = cursor.getDouble(3)
 
                val place = Places(id, name, lat, lng)
                 placesList.add(place)
@@ -76,9 +76,9 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
 
     companion object {
 
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         private const val DATABASE_NAME = "PlacesDB.db"
-        private const val TABLE_PLACES = "places1"
+        private const val TABLE_PLACES = "Table_Places"
 
         private const val COLUMN_ID = "_id"
         private const val COLUMN_NAME = "name"
