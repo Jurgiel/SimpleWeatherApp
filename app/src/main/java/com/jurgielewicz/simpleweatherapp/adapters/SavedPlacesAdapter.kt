@@ -18,7 +18,7 @@ class SavedPlacesAdapter(val places: List<Places>): RecyclerView.Adapter<ViewHol
     }
 
     override fun getItemCount(): Int {
-        return places.size
+        places.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
