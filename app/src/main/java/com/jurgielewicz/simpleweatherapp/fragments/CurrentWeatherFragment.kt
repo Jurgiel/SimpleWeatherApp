@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import com.jurgielewicz.simpleweatherapp.MainActivity
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.HourlyWeatherAdapter
+import com.jurgielewicz.simpleweatherapp.database.PlacesRepository
+import com.jurgielewicz.simpleweatherapp.database.database
 import com.jurgielewicz.simpleweatherapp.models.Periods
 import kotlinx.android.synthetic.main.fragment_current_weather.*
 import kotlinx.android.synthetic.main.fragment_current_weather.view.*
@@ -27,6 +30,7 @@ class CurrentWeatherFragment : Fragment() {
 
         rootView!!.saveLocationButton.setOnClickListener {view ->
             Log.d("CurrentWeatherFragment", "Location button click")
+            val exist = PlacesRepository(activity!!.applicationContext).existCheck(MainActivity().place)
         }
 
         return rootView

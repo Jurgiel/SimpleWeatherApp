@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(){
     private var hourlySearched = false
     private var dailySearched = false
     var details: List<Response>? = null
-    private var place: Places? = null
+    var place: Places? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,7 +108,6 @@ class MainActivity : AppCompatActivity(){
         drawer_layout.closeDrawer(GravityCompat.START)
 
     }
-
 
     private fun updateCurrentFragment(v: List<Periods>, i: Int){
         val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.currentItem)
