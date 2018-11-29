@@ -28,35 +28,35 @@ class CurrentWeatherFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_current_weather, container, false)
-        rootView?.hourlyRecycler.layoutManager = LinearLayoutManager(activity)
-        rootView!!.hourlyRecycler.adapter = null
+        rootView?.hourlyRecycler?.layoutManager = LinearLayoutManager(activity)
+        rootView?.hourlyRecycler?.adapter = null
         val db = DatabaseHelper(context = activity)
-        rootView!!.saveLocationButton.setOnClickListener {view ->
+        rootView?.saveLocationButton?.setOnClickListener {view ->
             Log.d("CurrentWeatherFragment", "Location button click")
             val db = DatabaseHelper(context = activity)
             if(db.existsCheck(place)) {
                 db.deletePlace(place)
-                rootView!!.saveLocationButton.setImageResource(R.drawable.ic_not_saved)
+                rootView?.saveLocationButton?.setImageResource(R.drawable.ic_not_saved)
             } else {
                 db.addPlace(place)
-                rootView!!.saveLocationButton.setImageResource(R.drawable.ic_saved)
+                rootView?.saveLocationButton?.setImageResource(R.drawable.ic_saved)
             }
         }
         return rootView
     }
 
-    fun updateRecView(v: List<Periods>, p: Places){
+    fun updateRecView(v: List<Periods>?, p: Places){
         val db = DatabaseHelper(activity).existsCheck(p)
-        if(db) rootView!!.saveLocationButton.setImageResource(R.drawable.ic_saved)
-        else rootView!!.saveLocationButton.setImageResource(R.drawable.ic_not_saved)
+        if(db) rootView?.saveLocationButton?.setImageResource(R.drawable.ic_saved)
+        else rootView?.saveLocationButton?.setImageResource(R.drawable.ic_not_saved)
         place = p
         rootView?.hourlyRecycler?.adapter = HourlyWeatherAdapter(v)
 
         cityTextView_CurrentLayout.text = p.name
-        weatherTextView_CurrentLayout.text = v[0].weather
-        temperatureTextView_CurrentLayout.text = v[0].tempC.toString().plus("°C")
-        feelsLikeTextView_CurrentLayout.text = "Feels like " + v[0].tempC.toString().plus("°C")
-        downloadImage(getIconUrl(v[0].icon), icon_CurrentLayout, 300, 300)
-        dateTextView_CurentLayout.text = timeConverter(v[0].dateTimeISO, 3)
+        weatherTextView_CurrentLayout.text = v?.get(0)?.weather
+        temperatureTextView_CurrentLayout.text = v?.get(0)?.tempC.toString().plus("°C")
+        feelsLikeTextView_CurrentLayout.text = "Feels like " + v?.get(0)?.tempC.toString().plus("°C")
+        downloadImage(getIconUrl(v?.get(0)?.icon), icon_CurrentLayout, 300, 300)
+        dateTextView_CurentLayout.text = timeConverter(v?.get(0)?.dateTimeISO, 3)
     }
 }

@@ -28,12 +28,12 @@ class DailyWeatherFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_daily_weather, container, false)
-        rootView!!.dailyRecycler.layoutManager = LinearLayoutManager(activity)
-        rootView!!.dailyRecycler.adapter = null
-        rootView!!.dailyRecycler.addOnItemClickListener(object : OnItemClickListener {
+        rootView?.dailyRecycler?.layoutManager = LinearLayoutManager(activity)
+        rootView?.dailyRecycler?.adapter = null
+        rootView?.dailyRecycler?.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 val intent = Intent(context, DetailedWeatherActivity::class.java)
-                intent.putExtra("detailed_weather", Response(data!!))
+                intent.putExtra("detailed_weather", Response(data))
                 intent.putExtra("position", position)
                 startActivity(intent)
             }
@@ -41,7 +41,7 @@ class DailyWeatherFragment : Fragment() {
         return rootView
     }
 
-    fun updateRecView(v: List<Periods>){
+    fun updateRecView(v: List<Periods>?){
         data = v
         rootView?.dailyRecycler?.adapter = DailyWeatherAdapter(v)
     }

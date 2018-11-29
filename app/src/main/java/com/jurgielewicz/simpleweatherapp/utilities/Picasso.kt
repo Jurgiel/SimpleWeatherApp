@@ -16,6 +16,6 @@ fun downloadImage(imageUrl: String, imageView: ImageView, width: Int, height: In
     }
 }
 
-fun getIconUrl(iconId: String): String{
+fun getIconUrl(iconId: String?): String{
     return  "https://cdn.aerisapi.com/wxicons/v2/$iconId"
 }

@@ -9,7 +9,7 @@ import com.jurgielewicz.simpleweatherapp.models.ViewHolder
 import com.jurgielewicz.simpleweatherapp.utilities.*
 import kotlinx.android.synthetic.main.row_hourly_weather.view.*
 
-class HourlyWeatherAdapter(val periods:List<Periods>): RecyclerView.Adapter<ViewHolder>(){
+class HourlyWeatherAdapter(val periods:List<Periods>?): RecyclerView.Adapter<ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -19,16 +19,18 @@ class HourlyWeatherAdapter(val periods:List<Periods>): RecyclerView.Adapter<View
     }
 
     override fun getItemCount(): Int {
-        return periods.size
+        return periods?.size!!
+        //can't return Int?
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.timeTextView_hourly_weather_row.text = timeConverter(periods[position].dateTimeISO, 2)
-        holder.itemView.dayTextView_hourly_weather_row.text = timeConverter(periods[position].dateTimeISO, 1)
-        holder.itemView.maxTempTextView_hourly_weather_row.text = periods[position].maxTempC.toString().plus("℃\t")
-        holder.itemView.precipitationTextView_hourly_weather_row.text = "Precipitation: ".plus(periods[position].pop.toString()).plus("%")
-        holder.itemView.weatherTextView_hourly_weather_row.text = periods[position].weather
-        downloadImage(getIconUrl(periods[position].icon), holder.itemView.icon_hourly_weather_row, 200, 200)
+        val period = periods?.get(position)
+        holder.itemView.timeTextView_hourly_weather_row.text = timeConverter(period?.dateTimeISO, 2)
+        holder.itemView.dayTextView_hourly_weather_row.text = timeConverter(period?.dateTimeISO, 1)
+        holder.itemView.maxTempTextView_hourly_weather_row.text = period?.maxTempC.toString().plus("℃\t")
+        holder.itemView.precipitationTextView_hourly_weather_row.text = "Precipitation: ".plus(period?.pop.toString()).plus("%")
+        holder.itemView.weatherTextView_hourly_weather_row.text = period?.weather
+        downloadImage(getIconUrl(period?.icon), holder.itemView.icon_hourly_weather_row, 200, 200)
 
     }
 }

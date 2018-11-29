@@ -3,7 +3,7 @@ package com.jurgielewicz.simpleweatherapp.utilities
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun timeConverter(string: String, i: Int): String {
+fun timeConverter(string: String?, i: Int): String {
     val isoFormat = "yyyy-MM-dd'T'HH:mm:ss"
     var expectedFormat = "dd/MM"
     when(i){

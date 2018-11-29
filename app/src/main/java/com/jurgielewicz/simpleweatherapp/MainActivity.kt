@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response[0].periods, 0, place)  },
+                        { result -> updateCurrentFragment(result.response?.get(0)?.periods, 0, place)  },
                         { error -> Log.d("Searching error", error.message) }
                 )
         1 -> dispose = weatherApiService
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response[0].periods, 1, place)
+                        { result -> updateCurrentFragment(result.response?.get(0)?.periods, 1, place)
                                     details = result.response},
                         { error -> Log.d("Searching error", error.message) }
                 )
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-    private fun updateCurrentFragment(v: List<Periods>, i: Int, place: Places){
+    private fun updateCurrentFragment(v: List<Periods>?, i: Int, place: Places){
         val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.currentItem)
        when(i) {
            0->(fragment as CurrentWeatherFragment).updateRecView(v, place)
