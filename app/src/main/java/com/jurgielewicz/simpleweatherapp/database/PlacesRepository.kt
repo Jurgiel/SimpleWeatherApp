@@ -4,7 +4,6 @@ import android.content.Context
 import com.jurgielewicz.simpleweatherapp.models.Place
 import com.jurgielewicz.simpleweatherapp.models.Places
 import org.jetbrains.anko.db.MapRowParser
-import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -37,12 +36,6 @@ class PlacesRepository(val context: Context) {
                 "lat" to place.lat,
                 "lng" to place.lng)
     }
-
-    fun delete(place: Places) = context.database.use {
-        val delete = delete("PLACES_TABLE",
-                whereClause = "lat = ${place.lat} and lng = ${place.lng}")
-    }
-
 
 //exists check
 }
