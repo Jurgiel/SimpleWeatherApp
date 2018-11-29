@@ -1,6 +1,5 @@
 package com.jurgielewicz.simpleweatherapp.utilities
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -23,18 +22,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         val db = this.writableDatabase
         val query = "SELECT * FROM $TABLE_PLACES"
         val data = db.rawQuery(query, null)
-        db.close()
         return data
-    }
-
-    fun addPlace(name: String, lat: Double, lng: Double){
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put(COLUMN_NAME, name)
-        values.put(COLUMN_LAT, lat)
-        values.put(COLUMN_LNG, lng)
-        db.insert(TABLE_PLACES, null, values)
-        db.close()
     }
 
     companion object {
