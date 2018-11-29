@@ -47,12 +47,20 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Stetho.initializeWithDefaults(this)
 
-        drawer_layout.openDrawer(GravityCompat.START)
-        Stetho.initializeWithDefaults(this);
         clientId = getString(R.string.client_id)
         clientSecret = getString(R.string.client_secret)
+
+
+        viewPagerLayout.visibility = View.INVISIBLE
         setUpViewPager()
+        loadSavedPlaces(applicationContext)
+        drawer_layout.openDrawer(GravityCompat.START)
+
+        clientId = getString(R.string.client_id)
+        clientSecret = getString(R.string.client_secret)
+
 
         val autocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment) as PlaceAutocompleteFragment
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
@@ -98,13 +106,14 @@ class MainActivity : AppCompatActivity(){
 
     fun search(place: Places, i: Int) {
         //0- hourly, 1- daily
+        viewPagerLayout.visibility = View.VISIBLE
         when (i) {
         0 -> dispose = weatherApiService
                 .requestHourlyWeather(place.lat, place.lng, clientId, clientSecret)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response[0].periods, 0)  },
+                        { result -> updateCurrentFragment(result.response[0].periods, 0, place)  },
                         { error -> Log.d("Searching error", error.message) }
                 )
         1 -> dispose = weatherApiService
@@ -112,7 +121,7 @@ class MainActivity : AppCompatActivity(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> updateCurrentFragment(result.response[0].periods, 1)
+                        { result -> updateCurrentFragment(result.response[0].periods, 1, place)
                                     details = result.response},
                         { error -> Log.d("Searching error", error.message) }
                 )
@@ -130,7 +139,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-    private fun updateCurrentFragment(v: List<Periods>, i: Int){
+    private fun updateCurrentFragment(v: List<Periods>, i: Int, place: Places){
         val fragment = supportFragmentManager.findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.currentItem)
        when(i) {
            0->(fragment as CurrentWeatherFragment).updateRecView(v, place)

@@ -55,14 +55,14 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
 
     fun deletePlace(place: Places) {
         val db = this.writableDatabase
-        db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = ${place.lat} AND $COLUMN_LNG = ${place.lng}")
+        db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_ID = ${place.id}")
         db.close()
     }
 
 
     fun existsCheck(place: Places): Boolean {
-        val db= this.writableDatabase
-        val query = "SELECT 1 FROM $TABLE_PLACES WHERE $COLUMN_LAT = ${place.lat} AND $COLUMN_LNG = ${place.lng}"
+        val db= this.readableDatabase
+        val query = "SELECT * FROM $TABLE_PLACES WHERE $COLUMN_LAT = ${place.lat} AND $COLUMN_LNG = ${place.lng}"
         val cursor = db.rawQuery(query, null)
         if(cursor.count > 0){
             cursor.close()

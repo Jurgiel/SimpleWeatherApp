@@ -28,23 +28,27 @@ class CurrentWeatherFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_current_weather, container, false)
-        rootView!!.hourlyRecycler.layoutManager = LinearLayoutManager(activity)
+        rootView?.hourlyRecycler.layoutManager = LinearLayoutManager(activity)
         rootView!!.hourlyRecycler.adapter = null
-
+        val db = DatabaseHelper(context = activity)
         rootView!!.saveLocationButton.setOnClickListener {view ->
             Log.d("CurrentWeatherFragment", "Location button click")
             val db = DatabaseHelper(context = activity)
-            if(!db.existsCheck(place)) {
-                db.addPlace(place)
-            } else {
+            if(db.existsCheck(place)) {
                 db.deletePlace(place)
+                rootView!!.saveLocationButton.setImageResource(R.drawable.ic_not_saved)
+            } else {
+                db.addPlace(place)
+                rootView!!.saveLocationButton.setImageResource(R.drawable.ic_saved)
             }
         }
-
         return rootView
     }
 
     fun updateRecView(v: List<Periods>, p: Places){
+        val db = DatabaseHelper(activity).existsCheck(p)
+        if(db) rootView!!.saveLocationButton.setImageResource(R.drawable.ic_saved)
+        else rootView!!.saveLocationButton.setImageResource(R.drawable.ic_not_saved)
         place = p
         rootView?.hourlyRecycler?.adapter = HourlyWeatherAdapter(v)
 
