@@ -6,14 +6,13 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.google.android.gms.common.api.Status
-import com.google.android.gms.location.places.Place
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
 import com.google.android.gms.location.places.ui.PlaceSelectionListener
-import com.google.android.gms.maps.model.LatLng
 import com.jurgielewicz.simpleweatherapp.adapters.ViewPagerAdapter
 import com.jurgielewicz.simpleweatherapp.fragments.CurrentWeatherFragment
 import com.jurgielewicz.simpleweatherapp.fragments.DailyWeatherFragment
 import com.jurgielewicz.simpleweatherapp.models.Periods
+import com.jurgielewicz.simpleweatherapp.models.Places
 import com.jurgielewicz.simpleweatherapp.models.Response
 import com.jurgielewicz.simpleweatherapp.utilities.WeatherApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,8 +32,8 @@ class MainActivity : AppCompatActivity(){
     }
     private var hourlySearched = false
     private var dailySearched = false
-    private var latLng: LatLng? = null
     var details: List<Response>? = null
+    private var place: Places? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,21 +41,17 @@ class MainActivity : AppCompatActivity(){
 
         clientId = getString(R.string.client_id)
         clientSecret = getString(R.string.client_secret)
-
         setUpViewPager()
 
         val autocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment) as PlaceAutocompleteFragment
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-            override fun onPlaceSelected(p0: Place?) {
+            override fun onPlaceSelected(p0: com.google.android.gms.location.places.Place?) {
                 hourlySearched = false
                 dailySearched = false
-                latLng = p0?.latLng
-                search(latLng, viewPager.currentItem)
-                if(viewPager.currentItem == 0){
-                    hourlySearched = true
-                } else {
-                    dailySearched = true
-                }
+                place = Places(0, p0?.name.toString(), p0?.latLng?.latitude, p0?.latLng?.longitude)
+                search(place!!, viewPager.currentItem)
+                if(viewPager.currentItem == 0) hourlySearched = true
+                else dailySearched = true
                 closeDrawer()
             }
 
@@ -66,29 +61,25 @@ class MainActivity : AppCompatActivity(){
         })
 
         viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
             override fun onPageSelected(position: Int) {
-                    if(viewPager.currentItem == 0 && hourlySearched == false && latLng != null){
-                        search(latLng, 0)
-                        Log.d("Debuging", "check if 0")
+                    if(viewPager.currentItem == 0 && !hourlySearched && place != null){
+                        search(place!!, 0)
                         hourlySearched = true
-                    }
-                    if(viewPager.currentItem == 1 && dailySearched == false && latLng != null){
-                        search(latLng, 1)
-                        Log.d("Debuging", "check if 1")
+                    }else if(viewPager.currentItem == 1 && !dailySearched && place != null){
+                        search(place!!, 1)
                         dailySearched = true
                     }
             }
         })
     }
-    fun search(latLng: LatLng?, i: Int) {
+
+    fun search(place: Places, i: Int) {
         //0- hourly, 1- daily
         when (i) {
         0 -> dispose = weatherApiService
-                .requestHourlyWeather(latLng!!.latitude, latLng!!.longitude, clientId, clientSecret)
+                .requestHourlyWeather(place.lat, place.lng, clientId, clientSecret)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -96,7 +87,7 @@ class MainActivity : AppCompatActivity(){
                         { error -> Log.d("Searching error", error.message) }
                 )
         1 -> dispose = weatherApiService
-                .requestDailyWeather(latLng!!.latitude, latLng!!.longitude, clientId, clientSecret)
+                .requestDailyWeather(place.lat, place.lng, clientId, clientSecret)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -144,4 +135,3 @@ class MainActivity : AppCompatActivity(){
         }
     }
 }
-
