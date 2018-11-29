@@ -38,13 +38,19 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
 <<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
+<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
 =======
+=======
+>>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
     fun deletePlace(lat:Double, lng: Double){
         val db = this.writableDatabase
         db.execSQL("DELETE FROM $TABLE_PLACES WHERE $COLUMN_LAT = $lat AND $COLUMN_LNG = $lng")
         db.close()
     }
 
+<<<<<<< HEAD:app/src/main/java/com/jurgielewicz/simpleweatherapp/database/DatabaseHelper.kt
+>>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
+=======
 >>>>>>> parent of b5bc82d... row existCheck:app/src/main/java/com/jurgielewicz/simpleweatherapp/utilities/DatabaseHelper.kt
     companion object {
 
