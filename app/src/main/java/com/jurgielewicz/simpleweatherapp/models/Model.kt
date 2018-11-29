@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Locale(val lat: Double, val long: Double) : Parcelable
+data class Place(val id: Long, val name: String, val lat: Double, val lng: Double):Parcelable
 
 @Parcelize
 data class Periods(val timestamp: Long,
@@ -23,7 +23,7 @@ data class Periods(val timestamp: Long,
                    val sunriseISO: String,
                    val sunsetISO: String) : Parcelable
 @Parcelize
-data class Response(val periods: List<Periods>, val locale: Locale) : Parcelable
+data class Response(val periods: List<Periods>) : Parcelable
 
 @Parcelize
 data class Result(val response: List<Response>) : Parcelable
