@@ -32,14 +32,16 @@ class CurrentWeatherFragment : Fragment() {
             val db = DatabaseHelper(context = activity)
             if(!db.existsCheck(place)) {
                 db.addPlace(place)
-            } else Toast.makeText(activity, "PLACE IS ALREADY SAVED", Toast.LENGTH_SHORT).show()
+            } else {
+                db.deletePlace(place)
+            }
         }
 
         return rootView
     }
 
     fun updateRecView(v: List<Periods>, p: Places){
-        
+
         place = p
         rootView?.hourlyRecycler?.adapter = HourlyWeatherAdapter(v)
     }
