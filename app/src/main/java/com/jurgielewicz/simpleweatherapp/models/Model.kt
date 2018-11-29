@@ -5,7 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 <<<<<<< HEAD
+<<<<<<< HEAD
 data class Places(val id: Long?, val name: String?, val lat: Double?, val lng: Double?):Parcelable
+=======
+data class Locale(val lat: Double, val long: Double) : Parcelable
+>>>>>>> parent of 0615790... added place repo
 =======
 data class Locale(val lat: Double, val long: Double) : Parcelable
 >>>>>>> parent of 0615790... added place repo
