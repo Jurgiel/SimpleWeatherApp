@@ -20,7 +20,7 @@ class PlacesRepository(val context: Context) {
                         val lng = columns.getValue("lng")
 
                         val place = Place(id.toString().toLong(), name.toString(),
-                                lat.toString().toDouble(), lng.toString().toDouble()))
+                                lat.toString().toDouble(), lng.toString().toDouble())
                         places.add(place)
 
                         return places
