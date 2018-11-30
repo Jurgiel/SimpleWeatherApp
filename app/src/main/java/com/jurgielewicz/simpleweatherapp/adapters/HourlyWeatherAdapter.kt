@@ -9,7 +9,7 @@ import com.jurgielewicz.simpleweatherapp.models.ViewHolder
 import com.jurgielewicz.simpleweatherapp.utilities.*
 import kotlinx.android.synthetic.main.row_hourly_weather.view.*
 
-class HourlyWeatherAdapter(val periods:List<Periods>?): RecyclerView.Adapter<ViewHolder>(){
+class HourlyWeatherAdapter(private val periods:List<Periods>?): RecyclerView.Adapter<ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

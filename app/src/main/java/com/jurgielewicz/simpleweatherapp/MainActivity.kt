@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(){
     }
     private var hourlySearched = false
     private var dailySearched = false
-    var details: List<Response>? = null
+    private var details: List<Response>? = null
     lateinit var place: Places
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +52,9 @@ class MainActivity : AppCompatActivity(){
         clientId = getString(R.string.client_id)
         clientSecret = getString(R.string.client_secret)
 
-
         viewPagerLayout.visibility = View.INVISIBLE
         setUpViewPager()
-        loadSavedPlaces(applicationContext)
         drawer_layout.openDrawer(GravityCompat.START)
-
-        clientId = getString(R.string.client_id)
-        clientSecret = getString(R.string.client_secret)
-
 
         val autocompleteFragment = fragmentManager.findFragmentById(R.id.autocomplete_fragment) as PlaceAutocompleteFragment
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
@@ -104,7 +98,7 @@ class MainActivity : AppCompatActivity(){
         })
     }
 
-    fun search(place: Places, i: Int) {
+    private fun search(place: Places, i: Int) {
         //0- hourly, 1- daily
         viewPagerLayout.visibility = View.VISIBLE
         when (i) {
@@ -128,8 +122,8 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    fun setUpViewPager(){
-        var pagerAdapter = ViewPagerAdapter(supportFragmentManager)
+    private fun setUpViewPager(){
+        val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
         pagerAdapter.addFragments(CurrentWeatherFragment(), "Now")
         pagerAdapter.addFragments(DailyWeatherFragment(), "Daily")
 
@@ -178,9 +172,7 @@ class MainActivity : AppCompatActivity(){
                     1-> search(place, 1)
                 }
             closeDrawer()
-                }
-
+            }
         })
     }
-
 }

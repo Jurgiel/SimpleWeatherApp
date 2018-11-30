@@ -8,7 +8,7 @@ import com.jurgielewicz.simpleweatherapp.models.Places
 import com.jurgielewicz.simpleweatherapp.models.ViewHolder
 import kotlinx.android.synthetic.main.row_saved_place.view.*
 
-class SavedPlacesAdapter(val places: List<Places>): RecyclerView.Adapter<ViewHolder>(){
+class SavedPlacesAdapter(private val places: List<Places>): RecyclerView.Adapter<ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

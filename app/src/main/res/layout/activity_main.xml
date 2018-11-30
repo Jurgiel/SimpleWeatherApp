@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/itemBackgroundColor"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/itemBackgroundColor"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -42,6 +44,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
+                android:background="@color/itemBackgroundColor"
                 android:gravity="center"
                 android:text="SAVED PLACES"
                 android:textAllCaps="true"

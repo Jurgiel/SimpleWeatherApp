@@ -13,7 +13,7 @@ fun timeConverter(string: String?, i: Int): String {
         3 -> expectedFormat = "EEE, dd/MM"
     }
     val dateFormat = SimpleDateFormat(isoFormat, Locale.getDefault())
-    var date = dateFormat.parse(string)
+    val date = dateFormat.parse(string)
     return SimpleDateFormat(expectedFormat).format(date)
 }
 

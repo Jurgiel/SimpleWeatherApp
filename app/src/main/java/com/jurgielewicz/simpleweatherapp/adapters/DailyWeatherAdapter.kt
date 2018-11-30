@@ -11,7 +11,7 @@ import com.jurgielewicz.simpleweatherapp.utilities.getIconUrl
 import com.jurgielewicz.simpleweatherapp.utilities.timeConverter
 import kotlinx.android.synthetic.main.row_daily_weather.view.*
 
-class DailyWeatherAdapter(val periods:List<Periods>?): RecyclerView.Adapter<ViewHolder>() {
+class DailyWeatherAdapter(private val periods:List<Periods>?): RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val weatherRow = layoutInflater.inflate(R.layout.row_daily_weather, parent, false)

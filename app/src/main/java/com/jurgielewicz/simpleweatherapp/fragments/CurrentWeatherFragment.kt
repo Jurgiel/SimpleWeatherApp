@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.Toast
-import com.jurgielewicz.simpleweatherapp.MainActivity
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.HourlyWeatherAdapter
 import com.jurgielewicz.simpleweatherapp.database.DatabaseHelper
@@ -23,15 +21,14 @@ import kotlinx.android.synthetic.main.fragment_current_weather.view.*
 
 
 class CurrentWeatherFragment : Fragment() {
-    var rootView: View? = null
+    private var rootView: View? = null
     private lateinit var place: Places
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_current_weather, container, false)
         rootView?.hourlyRecycler?.layoutManager = LinearLayoutManager(activity)
         rootView?.hourlyRecycler?.adapter = null
-        val db = DatabaseHelper(context = activity)
-        rootView?.saveLocationButton?.setOnClickListener {view ->
+        rootView?.saveLocationButton?.setOnClickListener {
             Log.d("CurrentWeatherFragment", "Location button click")
             val db = DatabaseHelper(context = activity)
             if(db.existsCheck(place)) {

@@ -9,16 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jurgielewicz.simpleweatherapp.DetailedWeatherActivity
-import com.jurgielewicz.simpleweatherapp.MainActivity
-
 import com.jurgielewicz.simpleweatherapp.R
 import com.jurgielewicz.simpleweatherapp.adapters.DailyWeatherAdapter
 import com.jurgielewicz.simpleweatherapp.models.Periods
 import com.jurgielewicz.simpleweatherapp.models.Response
-import com.jurgielewicz.simpleweatherapp.models.Result
 import com.jurgielewicz.simpleweatherapp.utilities.OnItemClickListener
 import com.jurgielewicz.simpleweatherapp.utilities.addOnItemClickListener
-import kotlinx.android.synthetic.main.fragment_current_weather.view.*
 import kotlinx.android.synthetic.main.fragment_daily_weather.view.*
 
 
