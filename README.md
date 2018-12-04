@@ -11,8 +11,4 @@ Used weather api: https://www.aerisweather.com/support/docs/api/
 Places SDK for Android is also needed, get it here https://developers.google.com/places/android-sdk/signup and place your key inside manifest meta-data.
 
 TODO:
-- User preferences ( *C, *F) etc
-- User can't request weather in same location for x time.
-- Replcace SQLITE with Anko Sqlite 
-- Place text inside strings.xml
-- better layout
+- MVP
